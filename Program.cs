@@ -84,16 +84,24 @@ namespace DotNetGcStressTest
             var gcInfo = GC.GetGCMemoryInfo();
 
             Console.WriteLine("Memory statistics:");
+
             Console.WriteLine($"- GC GetTotalMemory: {GC.GetTotalMemory(forceFullCollection: true) / megaByte:N0} MiB");
+
             Console.WriteLine($"- GC Info HeapSizeBytes: {gcInfo.HeapSizeBytes / megaByte:N0} MiB");
+            Console.WriteLine($"- GC Info TotalCommittedBytes: {gcInfo.TotalCommittedBytes / megaByte:N0} MiB");
             Console.WriteLine($"- GC Info TotalAvailableMemoryBytes: {gcInfo.TotalAvailableMemoryBytes / megaByte:N0} MiB");
             Console.WriteLine($"- GC Info FragmentedBytes: {gcInfo.FragmentedBytes / megaByte:N0} MiB");
             Console.WriteLine($"- GC Info MemoryLoadBytes: {gcInfo.MemoryLoadBytes / megaByte:N0} MiB");
             Console.WriteLine($"- GC Info HighMemoryLoadThresholdBytes: {gcInfo.HighMemoryLoadThresholdBytes / megaByte:N0} MiB");
+
             Console.WriteLine($"- Process PagedMemorySize: {process.PagedMemorySize64 / megaByte:N0} MiB");
             Console.WriteLine($"- Process PagedSystemMemorySize: {process.PagedSystemMemorySize64 / megaByte:N0} MiB");
             Console.WriteLine($"- Process PrivateMemorySize: {process.PrivateMemorySize64 / megaByte:N0} MiB");
             Console.WriteLine($"- Process VirtualMemorySize: {process.VirtualMemorySize64 / megaByte:N0} MiB");
+            Console.WriteLine($"- Process WorkingSet: {process.WorkingSet64 / megaByte:N0} MiB");
+            Console.WriteLine($"- Process PeakPagedMemorySize: {process.PeakPagedMemorySize64 / megaByte:N0} MiB");
+            Console.WriteLine($"- Process PeakWorkingSet: {process.PeakWorkingSet64 / megaByte:N0} MiB");
+
             Console.WriteLine($"- Task Manager Working Set: {new PerformanceCounter("Process", "Working Set - Private", process.ProcessName).RawValue / megaByte:N0} MiB");
             Console.WriteLine();
         }
